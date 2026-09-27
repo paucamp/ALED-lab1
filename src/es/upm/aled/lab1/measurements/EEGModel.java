@@ -2,15 +2,13 @@ package es.upm.aled.lab1.measurements;
 
 import java.io.DataInput;
 import java.io.DataInputStream;
+import java.io.DataOutput;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import es.upm.aled.lab1.gui.EEG_GUI;
 
@@ -53,11 +51,12 @@ public class EEGModel {
 	/**
 	 * Builds an EEGModel from an array of Measurements.
 	 * 
-	 * @param measurements The Measurements that make up the EEGModel.
+	 * @param _measurements The Measurements that make up the EEGModel.
 	 */
 	public EEGModel(Measurement[] measurements) {
-		// TODO
-		
+		for (int i=0; i< measurements.length; i++) {
+			this.measurements.add(measurements[i]);
+		}
 	}
 
 	/**
@@ -89,9 +88,8 @@ public class EEGModel {
 	 * @return The new EEGModel.
 	 */
 	public EEGModel filter(Filter filter) {
-		// TODO
-		
-		return null;
+		EEGModel eegModel_filtered = filter.applyFilter(this);
+		return eegModel_filtered;
 	}
 
 	/**
@@ -127,11 +125,28 @@ public class EEGModel {
 	 * Stores the EEGModel in a text file, following the OpenBCI format.
 	 * 
 	 * @param fileName Path to the OpenBCI file to be created.
-	 * @throws IOException Thrown if the file can't be written.
+	 * @throws IOException Thrmeasurements.get(0).numChannels()own if the file can't be written.
 	 */
 	public void saveFile(String fileName) throws IOException {
-		// TODO
-		
+		File f1 = new File(fileName);
+		if(f1.createNewFile()) {
+			System.out.println("El fichero: "+fileName+" ha sido creado");
+		}else {
+			System.out.println("El fichero: "+fileName+" ya existe");
+		}
+		FileOutputStream fos = new FileOutputStream(f1);
+		DataOutput fod = new DataOutputStream(fos);
+		int nc = measurements.get(0).numChannels();
+		String line;		
+		for (int i=0; i<measurements.size(); i++) {
+			line = ""+i;
+			for (int j=0; j < nc; j++) {
+				line += ", "+measurements.get(i).getChannel(j);
+			}
+			// fos.write();
+			
+		}
+			
 	}
 
 	/**
