@@ -22,6 +22,8 @@ public class EEG_GUI {
 	private float t = 0.0f;
 	CompositionPlot2D container;
 	private float period;
+	private String nombre;
+	
 
 	/**
 	 * Builds a GUI to plot the channels of an EEGModel. Each channel is shown in a
