@@ -22,7 +22,7 @@ public class EEG_GUI {
 	private float t = 0.0f;
 	CompositionPlot2D container;
 	private float period;
-	private String nombre;
+	private float modelo;
 	
 
 	/**
