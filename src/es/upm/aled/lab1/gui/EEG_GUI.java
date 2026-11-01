@@ -23,6 +23,7 @@ public class EEG_GUI {
 	CompositionPlot2D container;
 	private float period;
 	private float modelo;
+	private int numero;
 	
 
 	/**
