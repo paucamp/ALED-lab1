@@ -24,6 +24,7 @@ public class EEG_GUI {
 	private float period;
 	private float modelo;
 	private int numero;
+	private float clase;
 	
 
 	/**
